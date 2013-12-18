@@ -145,8 +145,10 @@ public:
 
 		while (1) {
 			int bytes_read = recvfrom(listener, buf, bufSize, 0, NULL, NULL);
-        	buf[bytes_read] = '\0';
-        	cout << buf << endl;
+			if (bytes_read > 0) {
+				reverse(buf, bytes_read - 1);
+			}
+			send();
 		}
 	}
 };
